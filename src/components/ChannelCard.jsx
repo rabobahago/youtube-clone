@@ -4,7 +4,7 @@ import { CheckCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { demoProfilePicture } from "../utils/constants";
 
-const ChannelCard = ({ channelDetail }) => (
+const ChannelCard = ({ channelDetail, marginTop }) => (
   <Box
     sx={{
       boxShadow: "none",
@@ -15,9 +15,10 @@ const ChannelCard = ({ channelDetail }) => (
       width: { xs: "356px", md: "320px" },
       height: "326px",
       margin: "auto",
+      marginTop,
     }}
   >
-    <Link to={`/channels/${channelDetail?.id?.channelId}`}>
+    <Link to={`/channel/${channelDetail?.id?.channelId}`}>
       <CardContent
         sx={{
           display: "flex",
@@ -29,7 +30,7 @@ const ChannelCard = ({ channelDetail }) => (
       >
         <CardMedia
           image={
-            channelDetail?.snippet?.thumbnail?.high?.url || demoProfilePicture
+            channelDetail?.snippet?.thumbnails?.high?.url || demoProfilePicture
           }
           alt={channelDetail?.snippet?.title}
           sx={{
@@ -44,10 +45,10 @@ const ChannelCard = ({ channelDetail }) => (
           {channelDetail?.snippet?.title}
           <CheckCircle sx={{ fontSize: 14, color: "gray", ml: "5px" }} />
         </Typography>
-        {channelDetail?.statistics?.subscribeCount && (
+        {channelDetail?.statistics?.subscriberCount && (
           <Typography variant="">
             {parseInt(
-              channelDetail?.statistics?.subscribeCount
+              channelDetail?.statistics?.subscriberCount
             ).toLocaleString()}{" "}
             subscribers
           </Typography>
